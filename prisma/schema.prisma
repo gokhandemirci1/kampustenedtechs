@@ -1,8 +1,5 @@
-// Production için PostgreSQL schema
-// Bu dosyayı schema.prisma olarak kullanmak için:
-// 1. Mevcut schema.prisma'yı yedekleyin
-// 2. Bu dosyayı schema.prisma olarak kopyalayın
-// 3. DATABASE_URL environment variable'ını PostgreSQL connection string olarak ayarlayın
+// Prisma Schema - Kampüsten Eğitim Platformu
+// PostgreSQL için yapılandırılmıştır
 
 generator client {
   provider = "prisma-client-js"
@@ -18,14 +15,14 @@ model User {
   email         String   @unique
   password      String
   name          String
-  role          String   // ADMIN, TEACHER, STUDENT
+  role          String // ADMIN, TEACHER, STUDENT
   teacherStatus String?  @default("PENDING") // PENDING, APPROVED, REJECTED
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  
+
   // Relations
-  courses       Course[]
-  assignments   TeacherAssignment[]
+  courses     Course[]
+  assignments TeacherAssignment[]
 }
 
 model Course {
@@ -35,10 +32,10 @@ model Course {
   content     String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+
   // Relations
   teacherId   String
-  teacher     User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacher     User                @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   assignments TeacherAssignment[]
 }
 
@@ -49,11 +46,10 @@ model TeacherAssignment {
   salary    Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   // Relations
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  
+  course  Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  teacher User   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
   @@unique([courseId, teacherId])
 }
-
