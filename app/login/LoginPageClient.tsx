@@ -1,22 +1,11 @@
-import { Suspense } from 'react'
-import LoginPageClient from './LoginPageClient'
+'use client'
 
-// Force dynamic rendering - useSearchParams() requires dynamic page
-export const dynamic = 'force-dynamic'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
+import { useAuth } from '@/components/AuthProvider'
 
-export default function LoginPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-lg text-gray-600">Yükleniyor...</div>
-        </div>
-      </div>
-    }>
-      <LoginPageClient />
-    </Suspense>
-  )
-}
+export default function LoginPageClient() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { login, user } = useAuth()
@@ -163,20 +152,6 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
-  )
-}
-
-export default function LoginPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-lg text-gray-600">Yükleniyor...</div>
-        </div>
-      </div>
-    }>
-      <LoginPageContent />
-    </Suspense>
   )
 }
 

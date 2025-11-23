@@ -1,16 +1,22 @@
-import { Suspense } from 'react'
-import TeacherDashboardClient from './TeacherDashboardClient'
+'use client'
 
-// Force dynamic rendering - useSearchParams() requires dynamic page
-export const dynamic = 'force-dynamic'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useAuth } from '@/components/AuthProvider'
+import { Navbar } from '@/components/Navbar'
 
-export default function TeacherDashboard() {
-  return (
-    <Suspense fallback={<div>Yükleniyor...</div>}>
-      <TeacherDashboardClient />
-    </Suspense>
-  )
+interface Assignment {
+  id: string
+  course: {
+    id: string
+    title: string
+    description: string
+  }
+  salary: number
+  createdAt: string
 }
+
+export default function TeacherDashboardClient() {
   const { user, loading } = useAuth()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -129,14 +135,6 @@ export default function TeacherDashboard() {
         )}
       </div>
     </div>
-  )
-}
-
-export default function TeacherDashboard() {
-  return (
-    <Suspense fallback={<div>Yükleniyor...</div>}>
-      <TeacherDashboardContent />
-    </Suspense>
   )
 }
 
