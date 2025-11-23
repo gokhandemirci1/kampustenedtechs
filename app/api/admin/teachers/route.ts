@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
+// Build sırasında bu route'un çalıştırılmamasını garanti et
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
 export const runtime = 'nodejs'
 
 // Get all teachers (for admin)

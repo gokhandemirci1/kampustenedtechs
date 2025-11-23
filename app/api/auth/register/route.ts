@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createUser } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
+// Build sırasında bu route'un çalıştırılmamasını garanti et
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
 export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {

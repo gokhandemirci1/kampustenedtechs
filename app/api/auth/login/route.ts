@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateUser } from '@/lib/auth'
 
+// Build sırasında bu route'un çalıştırılmamasını garanti et
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
 export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
