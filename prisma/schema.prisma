@@ -1,13 +1,16 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Production için PostgreSQL schema
+// Bu dosyayı schema.prisma olarak kullanmak için:
+// 1. Mevcut schema.prisma'yı yedekleyin
+// 2. Bu dosyayı schema.prisma olarak kopyalayın
+// 3. DATABASE_URL environment variable'ını PostgreSQL connection string olarak ayarlayın
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -17,8 +20,8 @@ model User {
   name          String
   role          String   // ADMIN, TEACHER, STUDENT
   teacherStatus String?  @default("PENDING") // PENDING, APPROVED, REJECTED
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
   
   // Relations
   courses       Course[]
@@ -35,7 +38,7 @@ model Course {
   
   // Relations
   teacherId   String
-  teacher     User     @relation(fields: [teacherId], references: [id])
+  teacher     User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   assignments TeacherAssignment[]
 }
 
@@ -48,8 +51,8 @@ model TeacherAssignment {
   updatedAt DateTime @updatedAt
   
   // Relations
-  course    Course   @relation(fields: [courseId], references: [id])
-  teacher   User     @relation(fields: [teacherId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   
   @@unique([courseId, teacherId])
 }

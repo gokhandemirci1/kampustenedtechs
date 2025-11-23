@@ -14,10 +14,16 @@ git push -u origin main
 
 ### 2. Supabase Database Oluştur (5 dakika)
 
-1. [supabase.com](https://supabase.com) → Sign Up
-2. New Project oluştur
-3. Settings → Database → Connection string kopyala
-   - Format: `postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres`
+**📖 Detaylı Rehber:** [SUPABASE_SETUP.md](SUPABASE_SETUP.md) dosyasına bakın
+
+**Hızlı Adımlar:**
+1. [supabase.com](https://supabase.com) → Sign Up (GitHub ile önerilir)
+2. "New Project" → Proje adı ve şifre belirle
+3. Region seç (West Europe önerilir)
+4. "Create new project" → 1-2 dakika bekle
+5. Settings → Database → Connection string (URI) kopyala
+   - Format: `postgresql://postgres:[PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres?sslmode=require`
+   - ⚠️ Şifreyi mutlaka kaydedin!
 
 ### 3. Prisma'yı PostgreSQL'e Geçir (2 dakika)
 

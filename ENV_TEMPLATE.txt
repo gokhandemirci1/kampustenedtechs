@@ -1,0 +1,13 @@
+# .env dosyası içeriği
+# Bu dosyayı .env olarak kaydedin (proje kök dizininde)
+
+# Database
+# Production (PostgreSQL - Supabase)
+DATABASE_URL="postgresql://postgres:Ahu_k4g&6P#dmD$@db.qajwzfwfxoemkdjagzjs.supabase.co:5432/postgres?sslmode=require"
+
+# Environment
+NODE_ENV=development
+
+# Next.js
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+

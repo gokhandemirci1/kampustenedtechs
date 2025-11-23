@@ -13,7 +13,7 @@ const path = require('path');
 const schemaPath = path.join(__dirname, '..', 'prisma', 'schema.prisma');
 const productionSchemaPath = path.join(__dirname, '..', 'prisma', 'schema.production.prisma');
 
-console.log('🔄 PostgreSQL schema'ya geçiş yapılıyor...');
+console.log('PostgreSQL schema\'ya gecis yapiliyor...');
 
 try {
   // Production schema'yı oku
@@ -23,20 +23,20 @@ try {
   const currentSchema = fs.readFileSync(schemaPath, 'utf8');
   const backupPath = path.join(__dirname, '..', 'prisma', 'schema.sqlite.backup');
   fs.writeFileSync(backupPath, currentSchema);
-  console.log('✅ Mevcut schema yedeklendi: prisma/schema.sqlite.backup');
+  console.log('OK: Mevcut schema yedeklendi: prisma/schema.sqlite.backup');
   
   // Production schema'yı yaz
   fs.writeFileSync(schemaPath, productionSchema);
-  console.log('✅ Schema PostgreSQL için güncellendi');
+  console.log('OK: Schema PostgreSQL icin guncellendi');
   
-  console.log('\n📝 Sonraki adımlar:');
-  console.log('1. DATABASE_URL environment variable\'ını PostgreSQL connection string olarak ayarlayın');
+  console.log('\nSonraki adimlar:');
+  console.log('1. DATABASE_URL environment variable\'ini PostgreSQL connection string olarak ayarlayin');
   console.log('2. npx prisma generate');
   console.log('3. npx prisma migrate dev --name init');
   console.log('4. npm run seed (opsiyonel)');
   
 } catch (error) {
-  console.error('❌ Hata:', error.message);
+  console.error('Hata:', error.message);
   process.exit(1);
 }
 

@@ -81,6 +81,8 @@ Projeyi internete yüklemek için detaylı rehberler:
 
 - **[Hızlı Başlangıç](QUICK_START_DEPLOYMENT.md)** - En hızlı deployment yöntemi
 - **[Detaylı Rehber](DEPLOYMENT.md)** - Tüm hosting seçenekleri ve adımlar
+- **[Supabase Kurulumu](SUPABASE_SETUP.md)** - ⭐ Detaylı Supabase database kurulum rehberi
+- **[Supabase Hızlı Rehber](SUPABASE_QUICK_GUIDE.md)** - 5 dakikada Supabase kurulumu
 - **[Environment Variables](ENV_SETUP.md)** - Environment variables kurulumu
 
 ### Önerilen Stack
