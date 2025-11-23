@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/components/AuthProvider'
 import { Navbar } from '@/components/Navbar'
@@ -16,7 +16,7 @@ interface Assignment {
   createdAt: string
 }
 
-export default function TeacherDashboard() {
+function TeacherDashboardContent() {
   const { user, loading } = useAuth()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -135,6 +135,14 @@ export default function TeacherDashboard() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function TeacherDashboard() {
+  return (
+    <Suspense fallback={<div>Yükleniyor...</div>}>
+      <TeacherDashboardContent />
+    </Suspense>
   )
 }
 
